@@ -74,7 +74,7 @@ function App() {
     }
   };
 
-  const handleSubmit = (formData) => {
+  const handleSubmit = (formData:any) => {
     if (editingData) {
       editData(editingData._id, formData);
     } else {
@@ -99,7 +99,7 @@ function App() {
         </div>
         <DataTable
           data={data}
-          onEdit={(item) => {
+          onEdit={(item : any) => {
             setEditingData(item);
             setShowForm(true);
           }}
