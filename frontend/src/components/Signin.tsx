@@ -10,8 +10,7 @@ const Login = () => {
  
   const [email, setEmail] = useState('asdf@gmail.com');
   const [password, setPassword] = useState('asdf');
-  const [error, setError] = useState('');
-  const setUser = useSetRecoilState(userState);
+  const setUser = useSetRecoilState<any>(userState);
 
   const navigate =useNavigate()
 
@@ -30,13 +29,13 @@ const Login = () => {
 
       setUser(user);
 
-      setError('');
+     
 
       toast.success("Signed In Successfully")
       navigate('/')
-      setError('');
+      
     } catch (err) {
-      setError('Login failed');
+      
       toast.error("Login failed")
 
     }

@@ -19,7 +19,7 @@ const router = createBrowserRouter([
 
       </PrivateRoute>
     ),
-    // errorElement: <ErrorPage />,
+    errorElement: <ErrorPage />,
   },
   {
     path: '/signup',

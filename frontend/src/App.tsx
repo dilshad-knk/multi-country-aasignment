@@ -46,17 +46,17 @@ function App() {
   const createData = async (formData:any) => {
     try {
       const response = await instance.post('/api/v1/data/create', formData);
-      setData((prevData) => [...prevData, response.data.data]);
+      setData((prevData :any) => [...prevData, response.data.data]);
     } catch (error) {
       console.error('Error creating data:', error);
     }
   };
 
-  const editData = async (id, formData) => {
+  const editData = async (id : string, formData : any) => {
     try {
       const response = await instance.put(`/api/v1/data/edit/${id}`, formData);
-      setData((prevData) =>
-        prevData.map((item) => (item._id === id ? response.data.data : item))
+      setData((prevData : any) =>
+        prevData.map((item : any) => (item._id === id ? response.data.data : item))
       );
     } catch (error) {
       console.error('Error editing data:', error);
@@ -65,10 +65,10 @@ function App() {
 
 
 
-  const deleteData = async (id) => {
+  const deleteData = async (id : any) => {
     try {
       await instance.delete(`/api/v1/data/delete/${id}`);
-      setData((prevData) => prevData.filter((item) => item._id !== id));
+      setData((prevData :any) => prevData.filter((item : any) => item._id !== id));
     } catch (error) {
       console.error('Error deleting data:', error);
     }

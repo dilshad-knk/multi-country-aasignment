@@ -118,7 +118,7 @@ const SignUp = () => {
               required
             >
               <option  value="" disabled>Choose...</option>
-              {countries.map((c,i) => (
+              {countries.map((c) => (
                   <option className="opacity-5" value={c.code}>{c.name}</option>
 
               ))}

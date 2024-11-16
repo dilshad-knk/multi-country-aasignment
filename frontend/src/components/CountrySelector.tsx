@@ -21,7 +21,7 @@ export const CountrySelector = () => {
       await instance.put(
         `/api/v1/data/changeCountry/${country}`
       );
-      setUser((user) => (user ? { ...user, country } : null));
+      setUser((user : any) => (user ? { ...user, country } : null));
       toast.success(
         `Country updated to ${countries.find((c) => c.code === country)?.name}`
       );
