@@ -10,7 +10,7 @@ const localStorageEffect = (key: string) => ({ setSelf, onSet }: any) => {
     console.error("Error reading or parsing from localStorage", error);
   }
 
-  onSet(newValue => {
+  onSet((newValue:any) => {
     try {
       localStorage.setItem(key, JSON.stringify(newValue));
     } catch (error) {
@@ -19,7 +19,7 @@ const localStorageEffect = (key: string) => ({ setSelf, onSet }: any) => {
   });
 };
 
-export const userState = atom({
+export const userState = atom <any>({
   key: 'userState',
   default: [],
   effects: [localStorageEffect('user')],
