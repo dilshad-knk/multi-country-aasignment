@@ -14,7 +14,7 @@ connectDb();
 
 app.use(cors({
     credentials: true ,
-    origin: true
+    origin: "https://github.com/dilshad-knk/multi-country-aasignment"
 }));
 
 
