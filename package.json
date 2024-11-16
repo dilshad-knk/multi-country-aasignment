@@ -1,0 +1,13 @@
+{
+  "private": true,
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "start:frontend": "npm run start --workspace frontend",
+    "build:frontend": "npm run build --workspace frontend",
+    "start:backend": "npm run start --workspace backend",
+    "build:backend": "npm run build --workspace backend"
+  }
+}
