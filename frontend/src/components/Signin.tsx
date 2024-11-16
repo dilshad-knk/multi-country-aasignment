@@ -8,8 +8,8 @@ import toast from 'react-hot-toast';
 
 const Login = () => {
  
-  const [email, setEmail] = useState<any>('');
-  const [password, setPassword] = useState<any>('');
+  const [email, setEmail] = useState<any>('admin@example.com');
+  const [password, setPassword] = useState<any>('adminpwd');
   const setUser = useSetRecoilState<any>(userState);
 
   const navigate =useNavigate()
