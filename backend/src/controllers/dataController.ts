@@ -41,7 +41,7 @@ export const createData = async (req: Request1, res: Response) => {
   } catch (error) {
     console.log(error);
     
-    return res.status(500).json({ error: "error creatin Data",error });
+    return res.status(500).json({ error: "error creatin Data" });
   }
 };
 
@@ -94,7 +94,6 @@ export const deleteData = async (req: Request1, res: Response) => {
       if (!deletedData) {
         return res.status(404).json({ error: "Data not found" });
       }
-
       res.status(200).json({ message: "Data deleted successfully" });
     } else {
       res.status(401).json({ message: "Un authorized" });
@@ -125,16 +124,16 @@ export const fetchDataByCountry = async (req: Request1, res: Response) => {
   }
 };
 
-export const fetchAll = async (req: Request, res: Response) => {
+export const fetchAll = async (req: Request1, res: Response) => {
   try {
     const userId = req.userId;
 
     const user = await User.findById(userId);
 
-    if (user.role == "viewer") {
+    if (user?.role == "viewer") {
       return res
         .status(500)
-        .json({ error: "Failed to fetch data", details: error });
+        .json({ error: "Failed to fetch data", });
     }
 
     const data = await Data.find().populate("createdBy", "username");
@@ -149,7 +148,7 @@ export const fetchAll = async (req: Request, res: Response) => {
   }
 };
 
-export const logout = (req: Request, res: Response) => {
+export const logout = (req: Request1, res: Response) => {
   try {
     res.cookie("token", "", {
       httpOnly: true,
@@ -187,8 +186,7 @@ export const changeCountry = async (req: Request1, res: Response) => {
         { new: true, runValidators: true }
       );
 
-      console.log(updateUser);
-      
+
 
       if (!updateUser) {
         return res.status(404).json({ error: "Country not found" });
@@ -196,8 +194,8 @@ export const changeCountry = async (req: Request1, res: Response) => {
 
 
       const userData = {
-        username : updateUser.username;
-        country : updateUser.country;
+        username : updateUser.username,
+        country : updateUser.country,
         role : updateUser.role
       }
       
@@ -210,6 +208,6 @@ export const changeCountry = async (req: Request1, res: Response) => {
   } catch (error) {
     console.log(error);
     
-    res.status(500).json({ error: "Failed to update data",  error });
+    res.status(500).json({ error: "Failed to update data" });
   }
 };

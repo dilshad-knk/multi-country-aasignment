@@ -70,7 +70,12 @@ export const login = async (req: Request, res: Response) => {
     let isValid ;
 
     if(user.role == "admin"){
-      isValid = await bcrypt.compare(process.env.SUPER_ADMIN_PWD, user.password)
+      if (!process.env.SUPER_ADMIN_PWD) {
+        throw new Error('SUPER_ADMIN_PWD environment variable is not defined');
+      }
+      
+      isValid = await bcrypt.compare(process.env.SUPER_ADMIN_PWD, user.password);
+      
     } else {
        isValid = await bcrypt.compare(password, user.password)
 
@@ -84,9 +89,9 @@ export const login = async (req: Request, res: Response) => {
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET as string, { expiresIn: '1h' });
 
     const cookieParams: CookieOptions = {
-      // httpOnly: true,
-      // secure: true,
-      // sameSite: "none" as "none",
+      httpOnly: true,
+      secure: true,
+      sameSite: "none" as "none",
       path: '/', 
 
     };
@@ -94,8 +99,8 @@ export const login = async (req: Request, res: Response) => {
     res.cookie('token', token, cookieParams)
 
     const userData = {
-      username : user.username;
-      country : user.country;
+      username : user.username,
+      country : user.country,
       role : user.role
     }
 
@@ -104,7 +109,7 @@ export const login = async (req: Request, res: Response) => {
 
   } catch (error) {
     console.log(error);
-    res.status(500).json({ error: 'Internal server error',error })
+    res.status(500).json({ error: 'Internal server error' })
   }
 }
 

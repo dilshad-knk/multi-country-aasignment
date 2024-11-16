@@ -1,5 +1,5 @@
 import express from 'express';
-import { createData, editData, deleteData, fetchDataByCountry ,fetchAll,logout,changeCountry} from '../controllers/dataController';
+import { createData, editData, deleteData, fetchDataByCountry ,fetchAll, logout ,changeCountry} from '../controllers/dataController';
 import { verify } from '../middleware/authMiddleware';
 
 const router = express.Router();

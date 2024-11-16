@@ -33,7 +33,7 @@ const createData = async (req, res) => {
     }
     catch (error) {
         console.log(error);
-        return res.status(500).json({ error: "error creatin Data", error });
+        return res.status(500).json({ error: "error creatin Data" });
     }
 };
 exports.createData = createData;
@@ -104,10 +104,10 @@ const fetchAll = async (req, res) => {
     try {
         const userId = req.userId;
         const user = await User_1.default.findById(userId);
-        if (user.role == "viewer") {
+        if (user?.role == "viewer") {
             return res
                 .status(500)
-                .json({ error: "Failed to fetch data", details: error });
+                .json({ error: "Failed to fetch data", });
         }
         const data = await Data_1.default.find().populate("createdBy", "username");
         if (data.length === 0) {
@@ -146,7 +146,6 @@ const changeCountry = async (req, res) => {
             return res.status(404).json({ error: "user not found" });
         if (user.role == "admin") {
             const updateUser = await User_1.default.findByIdAndUpdate(userId, { country }, { new: true, runValidators: true });
-            console.log(updateUser);
             if (!updateUser) {
                 return res.status(404).json({ error: "Country not found" });
             }
@@ -165,7 +164,7 @@ const changeCountry = async (req, res) => {
     }
     catch (error) {
         console.log(error);
-        res.status(500).json({ error: "Failed to update data", error });
+        res.status(500).json({ error: "Failed to update data" });
     }
 };
 exports.changeCountry = changeCountry;
