@@ -12,16 +12,11 @@ function App() {
   const [showForm, setShowForm] = React.useState<any>(false);
   const [editingData, setEditingData] = React.useState<any>(null);
 
-
-
-
-
   const fetchData = React.useCallback(async () => {
     try {
       const response = await instance.get('/api/v1/data/getDataByCountry', {
         params: { country: user.country },
       });
-  
       
       if (response.data?.data?.length) {
         setData(response.data.data);
@@ -31,17 +26,12 @@ function App() {
       }
     } catch (error) {
       console.error('Error fetching data:', error);
-  
-     
-    
     }
   }, [user.country]);
   
   React.useEffect(() => {
     fetchData();
   }, [user.country]);
-
-  
 
   const createData = async (formData:any) => {
     try {
@@ -62,8 +52,6 @@ function App() {
       console.error('Error editing data:', error);
     }
   };
-
-
 
   const deleteData = async (id : any) => {
     try {
@@ -87,31 +75,45 @@ function App() {
   return (
     <div className="min-h-screen bg-gray-100">
       <Header />
-      <main className="max-w-7xl mx-auto py-6">
-        <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-semibold text-gray-900">Data Management</h2>
+      <main className="w-full px-4 sm:px-6 md:px-8 lg:px-12 max-w-7xl mx-auto py-4 sm:py-6">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-0 mb-4 sm:mb-6">
+          <h2 className="text-xl sm:text-2xl font-semibold text-gray-900">Data Management</h2>
           <button
             onClick={() => setShowForm(true)}
-            className="px-4 py-2 bg-blue-600 text-white rounded-md"
+            className="w-full sm:w-auto px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition-colors duration-200 shadow-sm"
           >
             Add New
           </button>
         </div>
-        <DataTable
-          data={data}
-          onEdit={(item : any) => {
-            setEditingData(item);
-            setShowForm(true);
-          }}
-          onDelete={deleteData}
-        />
+        
+        <div className="bg-white rounded-lg shadow-sm overflow-hidden">
+          <div className="overflow-x-auto">
+            <DataTable
+              data={data}
+              onEdit={(item : any) => {
+                setEditingData(item);
+                setShowForm(true);
+              }}
+              onDelete={deleteData}
+            />
+          </div>
+        </div>
       </main>
+      
       {showForm && (
-        <DataForm
-          data={editingData}
-          onSubmit={handleSubmit}
-          onClose={() => setShowForm(false)}
-        />
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-40">
+          <div className="fixed inset-0 overflow-y-auto z-50">
+            <div className="flex min-h-full items-center justify-center p-4">
+              <div className="w-full max-w-lg">
+                <DataForm
+                  data={editingData}
+                  onSubmit={handleSubmit}
+                  onClose={() => setShowForm(false)}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );
