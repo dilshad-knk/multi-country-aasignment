@@ -23,6 +23,8 @@ const Login = () => {
         password
       });
 
+      navigate('/')
+
       const { token, user } = response.data;
       localStorage.setItem('token', token);
       localStorage.setItem('user', user);
@@ -32,7 +34,7 @@ const Login = () => {
      
 
       toast.success("Signed In Successfully")
-      navigate('/')
+      
       
     } catch (err) {
       

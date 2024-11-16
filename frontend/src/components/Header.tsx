@@ -1,7 +1,7 @@
 
 import { useRecoilState } from 'recoil';
 import { userState } from "../store/atom.ts";
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { CountrySelector } from './CountrySelector';
 import { LogOut, User as UserIcon } from 'lucide-react';
 import {logout} from "../utils/services"
@@ -10,7 +10,7 @@ import toast from 'react-hot-toast';
 export const Header = () => {
   const [user, setUser] = useRecoilState(userState);
 
-
+  const navigate = useNavigate()
   
 
   const handleLogout = async () => {
@@ -20,7 +20,7 @@ export const Header = () => {
       toast.error("Logged out successfully")
       
       setUser(null);
-      <Navigate to="/login" />
+      navigate('/login')
 
     } catch (error) {
       console.error('Logout failed:', error);
