@@ -51,7 +51,7 @@ export const DataForm = ({ data, onSubmit, onClose }: DataFormProps) => {
               onChange={(e) =>
                 setFormData({ ...formData, title: e.target.value })
               }
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-md border-gray-600 shadow-sm focus:border-blue-500 focus:ring-blue-500"
               required
             />
           </div>
@@ -66,7 +66,7 @@ export const DataForm = ({ data, onSubmit, onClose }: DataFormProps) => {
                 setFormData({ ...formData, description: e.target.value })
               }
               rows={3}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-md border-gray-600 shadow-sm focus:border-blue-500 focus:ring-blue-500"
               required
             />
           </div>
