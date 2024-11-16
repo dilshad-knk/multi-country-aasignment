@@ -14,7 +14,7 @@ connectDb();
 
 app.use(cors({
     credentials: true ,
-    origin: "https://github.com/dilshad-knk/multi-country-aasignment"
+    origin: "https://multi-country-aasignment-frontend.vercel.app"
 }));
 
 
