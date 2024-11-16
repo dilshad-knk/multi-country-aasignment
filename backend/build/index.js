@@ -15,7 +15,7 @@ dotenv_1.default.config();
 (0, db_1.default)();
 app.use((0, cors_1.default)({
     credentials: true,
-    origin: true
+    origin: "https://multi-country-aasignment-frontend.vercel.app"
 }));
 app.use(express_1.default.json());
 app.use((0, cookie_parser_1.default)());

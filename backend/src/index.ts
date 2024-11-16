@@ -14,7 +14,7 @@ connectDb();
 
 app.use(cors({
     credentials: true ,
-    origin: "https://multi-country-aasignment-frontend.vercel.app"
+    origin: "https://assignmentcomp-full-stack.vercel.app"
 }));
 
 
