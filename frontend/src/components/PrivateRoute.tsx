@@ -10,7 +10,7 @@ interface PrivateRouteProps {
 const PrivateRoute: React.FC<PrivateRouteProps> = ({ children }) => {
   const user = useRecoilValue(userState);
 
-  if (user === []) {
+  if (user === null) {
     return <Navigate to="/login" />;
   }
 
