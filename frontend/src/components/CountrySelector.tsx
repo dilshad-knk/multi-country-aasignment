@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 import instance from "../axios/axios.ts";
 
 export const CountrySelector = () => {
-  const [user, setUser] = useRecoilState(userState);
+  const [user, setUser] = useRecoilState<any>(userState);
   const isViewer = user?.role === "viewer";
 
   const handleCountryChange = async (

@@ -1,12 +1,17 @@
-import React from 'react';
+
 import { Edit2, Trash2 } from 'lucide-react';
 import { useRecoilValue } from 'recoil';
 import { userState } from '../store/atom';
 import { countries } from '../data/countries';
 
+type DataTableProps = {
+  data: any;
+  onEdit: any;
+  onDelete: any;
+};
 
 
-export const DataTable = ({ data, onEdit, onDelete }) => {
+export const DataTable = ({ data, onEdit, onDelete }: DataTableProps) => {
   const user = useRecoilValue(userState);
   const isAdmin = user?.role === 'admin';
 
@@ -37,7 +42,7 @@ export const DataTable = ({ data, onEdit, onDelete }) => {
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
-          {data.map((item, index) => (
+          {data.map((item :any, index : any) => (
             <tr key={item.id} className="hover:bg-gray-50">
               <td className="w-16 px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                 {index + 1}

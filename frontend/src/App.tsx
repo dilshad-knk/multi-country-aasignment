@@ -7,10 +7,10 @@ import { DataTable } from './components/DataTable';
 import { DataForm } from './components/DataForm';
 
 function App() {
-  const [user] = useRecoilState(userState);
-  const [data, setData] = React.useState([]);
-  const [showForm, setShowForm] = React.useState(false);
-  const [editingData, setEditingData] = React.useState(null);
+  const [user] = useRecoilState<any>(userState);
+  const [data, setData] = React.useState<any>([]);
+  const [showForm, setShowForm] = React.useState<any>(false);
+  const [editingData, setEditingData] = React.useState<any>(null);
 
 
 
@@ -33,7 +33,7 @@ function App() {
       console.error('Error fetching data:', error);
   
      
-      toast.error('Failed to fetch data. Please try again.');
+    
     }
   }, [user.country]);
   
@@ -43,7 +43,7 @@ function App() {
 
   
 
-  const createData = async (formData) => {
+  const createData = async (formData:any) => {
     try {
       const response = await instance.post('/api/v1/data/create', formData);
       setData((prevData) => [...prevData, response.data.data]);
